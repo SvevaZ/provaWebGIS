@@ -1,7 +1,10 @@
-import 'ol/ol.css';
-import 'ol-layerswitcher/dist/ol-layerswitcher.css';
+//import 'ol/ol.css';
+//import 'ol-layerswitcher/dist/ol-layerswitcher.css';
 import { Map, View, Overlay } from 'ol';
 import { Tile, Image, Group, Vector } from 'ol/layer';
+import LayerGroup from 'ol/layer/Group';
+import LayerVector from 'ol/layer/Vector';
+import LayerTile from 'ol/layer/Tile'; // added for layer selection/visualization
 import { OSM, ImageWMS, XYZ, StadiaMaps } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 import { GeoJSON } from 'ol/format';
@@ -225,15 +228,8 @@ map.addControl(
 var layerSwitcher = new LayerSwitcher({});
 map.addControl(layerSwitcher);
 
-// Add the Stadia Basemaps here:
-var stamenWatercolor = new Tile({
-    title: 'Stamen Watercolor',
-    type: 'base',
-    visible: false,
-    source: new StadiaMaps({
-        layer: 'stamen_watercolor'
-    })
-});
+// Add the CartoDB basemap here:
+
 var cartoDBDarkMatter = new Tile({
   title: 'CartoDB Dark Matter',
   type: 'base',
@@ -245,15 +241,8 @@ var cartoDBDarkMatter = new Tile({
             'https://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
   })
 });
-var stamenToner = new Tile({
-    title: 'Stamen Toner',
-    type: 'base',
-    visible: false,
-    source: new StadiaMaps({
-        layer: 'stamen_toner'
-    })
-});
-basemapLayers.getLayers().extend([stamenWatercolor, cartoDBDarkMatter, stamenToner]);
+
+basemapLayers.getLayers().extend([cartoDBDarkMatter]);
 
 // Add the ESRI XYZ basemaps here:
 var esriTopoBasemap = new Tile({
@@ -401,5 +390,3 @@ map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
 addVisibilityListeners(overlayLayers);
 updateLegend();
-
-
