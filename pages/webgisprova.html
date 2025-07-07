@@ -3,7 +3,7 @@
 
 <head>
     <base href="">
-    <title>GIS Project - Map</title>
+    <title>Juan Pablo Duque - Map</title>
 
     <meta charset="utf-8">
 
@@ -14,13 +14,14 @@
     <!-- Static files are imported from public folder -->
     <link rel="stylesheet" href="../assets/css/custom-styles.css">
 
+    <!-- Modules are imported normally -->
+    <script type="module" src="../assets/js/map.js"></script>
 </head>
 
 <body>
-
     <div class="w-100 vh-100">
         <div class="floating-button">
-            <a href="../index.html" class="btn btn-success"> HOME </a>
+            <a href="../index.html" class="btn btn-success">Go Home</a>
         </div>
         <div id="map"></div>
 
@@ -34,13 +35,12 @@
 
         <!--Add here the legend HTML-->
         <div id="legend" class="legend-container">
-            <span class="legend-title">Legend: </span>
+            <span class="legend-title">Legend For map</span>
             <div id="legend-content" class="legend-content">
             </div>
         </div>
+
     </div>
-        <!-- Modules are imported normally -->
-    <script type="module" src="../assets/js/map.js"></script>
 </body>
 
 </html>
