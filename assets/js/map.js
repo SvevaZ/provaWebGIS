@@ -20,69 +20,184 @@ let osm = new Tile({
     source: new OSM()
 });
 
-// Colombia Administrative Boundaries
-let colombiaBoundary = new Image({
-    title: "Colombia Administrative level 0",
+// Land cover
+let Land_cover = new Image({
+    title: "Land Cover 6 classes",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm0' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_LC_reclassified_2022' }
     }),
     visible: false
 });
 
-// Colombia Administrative level 1
-var colombiaDepartments = new Image({
-    title: "Colombia Administrative level 1",
+// no2 Bivariate
+let no2bivariate = new Image({
+    title: "Bivariate map no2",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_adm1' }
-    }),
-    opacity: 0.5,
-    visible: false
-});
-
-// Colombia Roads
-var colombiaRoads = new Image({
-    title: "Colombia Roads",
-    source: new ImageWMS({
-        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_roads' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_no2_2020_bivariate' }
     }),
     visible: false
 });
 
-// Colombia Rivers
-var colombiaRivers = new Image({
-    title: "Colombia Rivers",
-    type: "overlay",
+// pm2p5 Bivariate
+let pm2p5bivariate = new Image({
+    title: "Bivariate map pm2p5",
     source: new ImageWMS({
         url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
-        params: { 'LAYERS': 'gis:COL_rivers' }
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_2020_bivariate' }
     }),
-    visible: false,
-    minResolution: 1000,
-    maxResolution: 5000
+    visible: false
+});
+
+// pm10 Bivariate
+let pm10bivariate = new Image({
+    title: "Bivariate map pm10",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm10_2020_bivariate' }
+    }),
+    visible: false
+});
+
+// no2 annual average difference
+let NO2_aad = new Image({
+    title: "Annual average difference no2",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_NO2_2017-2021_AAD_map_2022	' }
+    }),
+    visible: false
+});
+
+// pm2p5 annual average difference
+let pm2p5_aad = new Image({
+    title: "Annual average difference pm2p5",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5 _2017-2021_AAD_map _2022' }
+    }),
+    visible: false
+});
+
+// pm10 annual average difference
+let pm10_aad = new Image({
+    title: "Annual average difference pm10",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:FRANCE_pm10 _2017-2021_AAD_map _2022' }
+    }),
+    visible: false
+});
+
+// no2 concentration map 2020
+let NO2_2020 = new Image({
+    title: "Concentration no2 2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:rec_France_average_NO2_2020	' }
+    }),
+    visible: false
+});
+
+// pm2p5 concentration map 2020
+let pm2p5_2020 = new Image({
+    title: "Concentration pm2p5  2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:France_pm2p5_concentration_map_2020' }
+    }),
+    visible: false
+});
+
+// pm10 concentration map 2020
+let pm10_2020 = new Image({
+    title: "Concentration pm10 2020",
+    source: new ImageWMS({
+        url: 'https://www.gis-geoserver.polimi.it/geoserver/wms',
+        params: { 'LAYERS': 'gisgeoserver_03:rec_France_average_pm10_2020' }
+    }),
+    visible: false
 });
 
 // Add the layer groups code here:
 let basemapLayers = new Group({
     title: 'Base Maps',
+    fold: 'close',
     layers: [osm]
 });
 let overlayLayers = new Group({
     title: 'Overlay Layers',
+    fold: 'open',
     layers: [
-        colombiaBoundary,
-        colombiaDepartments,
-        colombiaRivers,
-        colombiaRoads
+        new Group({
+            title: 'Bivariate Map',
+            fold: 'close',
+            visible: false,
+            layers: [
+                no2bivariate,
+                pm2p5bivariate,
+                pm10bivariate,
+            ]
+        }),
+        new Group({
+            title: 'Annual Average Difference 2022 from 5-year Mean',
+            fold: 'close',
+            visible: false,
+            layers: [NO2_aad, pm2p5_aad, pm10_aad]
+        }),
+        new Group({
+            title: 'Annual average concentration 2020',
+            fold: 'close',
+            visible: false,
+            layers: [NO2_2020, pm2p5_2020, pm10_2020]
+        }),
+        Land_cover,
     ]
 });
 
+// 3. Funzione per rendere visibile un solo layer alla volta
+function enforceSingleVisibleLayer(changedLayer) {
+  overlayLayers.getLayers().forEach(group => {
+    if (group instanceof LayerGroup) {
+      group.getLayers().forEach(layer => {
+        if (layer !== changedLayer &&
+        !layer.get('excludeFromToggle')) //  skip excluded layers (France boundaries) 
+        {
+          layer.setVisible(false);
+        }
+      });
+    } else {
+      if (group !== changedLayer && !group.get('excludeFromToggle'))
+     {
+        group.setVisible(false);
+      }
+    }
+  });
+}
+
+// 4. Aggiungi listener a ogni layer per gestire la visibilità esclusiva
+overlayLayers.getLayers().forEach(group => {
+  if (group instanceof LayerGroup) {
+    group.getLayers().forEach(layer => {
+      layer.on('change:visible', function () {
+        if (layer.getVisible()) {
+          enforceSingleVisibleLayer(layer);
+        }
+      });
+    });
+  } else {
+    group.on('change:visible', function () {
+      if (group.getVisible()) {
+        enforceSingleVisibleLayer(group);
+      }
+    });
+  }
+});
 
 // Map Initialization
-let mapOrigin = fromLonLat([-74, 4.6]);
-let zoomLevel = 5;
+let mapOrigin = fromLonLat([2, 46]);
+let zoomLevel = 6;
 let map = new Map({
     target: document.getElementById('map'),
     //layers: [basemapLayers, overlayLayers],
@@ -91,7 +206,7 @@ let map = new Map({
         center: mapOrigin,
         zoom: zoomLevel
     }),
-    projection: 'EPSG:3857'
+    projection: 'EPSG:4326'
 });
 
 // Add the map controls here:
@@ -119,6 +234,17 @@ var stamenWatercolor = new Tile({
         layer: 'stamen_watercolor'
     })
 });
+var cartoDBDarkMatter = new Tile({
+  title: 'CartoDB Dark Matter',
+  type: 'base',
+  visible: false,
+  source: new XYZ({
+        attributions: 
+            '© <a href="https://carto.com/">Carto</a> © <a href="https://www.openstreetmap.org/">OpenStreetMap</a>',
+        url: 
+            'https://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
+  })
+});
 var stamenToner = new Tile({
     title: 'Stamen Toner',
     type: 'base',
@@ -127,7 +253,7 @@ var stamenToner = new Tile({
         layer: 'stamen_toner'
     })
 });
-basemapLayers.getLayers().extend([stamenWatercolor, stamenToner]);
+basemapLayers.getLayers().extend([stamenWatercolor, cartoDBDarkMatter, stamenToner]);
 
 // Add the ESRI XYZ basemaps here:
 var esriTopoBasemap = new Tile({
@@ -156,76 +282,43 @@ var esriWorldImagery = new Tile({
             'World_Imagery/MapServer/tile/{z}/{y}/{x}',
     }),
 });
+
+
 basemapLayers.getLayers().extend([
     esriTopoBasemap, esriWorldImagery
 ]);
 
-// Add the WFS layer here:
-// First, the URL definition:
-var wfsUrl = "https://www.gis-geoserver.polimi.it/geoserver/gis/wfs?" + 
-"service=WFS&" + 
-"version=2.0.0&" +
-"request=GetFeature&" + 
-"typeName=gis:COL_water_areas&" + 
-"srsname=EPSG:3857&" + 
-"outputFormat=application/json";
-// Then the Source and Layer definitions:
-let wfsSource = new VectorSource({});
-let wfsLayer = new Vector({
-    title: "Colombia Water Areas",
-    source: wfsSource,
-    visible: true,
-    style: new Style({
-        fill: new Fill({
-            color: "#bde0fe"
-        }),
-        stroke: new Stroke({
-            width: 2,
-            color: "#a2d2ff"
-        })
-    })
-});
-
-// Finally the call to the WFS service:
-fetch(wfsUrl)
-.then((response) => {
-    if (!response.ok) {
-        throw new Error('Error ' + response.statusText);
-    }
-    response.json().then(data => {
-        wfsSource.addFeatures(
-	    new GeoJSON().readFeatures(data)
-	);
-    })
-});
-overlayLayers.getLayers().extend([wfsLayer]);
-
 // Add the local static GeoJSON layer here:
 let staticGeoJSONSource = new VectorSource({
-    url: '../geojson/COL_adm2.geojson', 
+    url: '../geojson/France_boundaries.geojson',
     format: new GeoJSON()
 });
 let staticGeoJSONLayer = new Vector({
-    title: "Colombia Municipalities",
+    title: "France boundaries",
     source: staticGeoJSONSource,
+    visible: true,
+    excludeFromToggle: true, // exclude this layer from the layer switcher
     style: new Style({
         fill: new Fill({
-            color: "rgba(255, 127, 80, 0.5)"
+            color: "rgba(0, 0, 0, 0)"
         }),
         stroke: new Stroke({
             width: 2,
-            color: "#ff7f50"
+            color: "rgba(55, 60, 153, 1)"
         })
     })
+    
+    
 });
 overlayLayers.getLayers().push(staticGeoJSONLayer);
+
 
 // Add the popup code here:
 var container = document.getElementById('popup');
 var content = document.getElementById('popup-content');
 var closer = document.getElementById('popup-closer');
 var popup = new Overlay({
-    element: container
+    element: container, content: content,
 }); 
 
 map.addOverlay(popup);
@@ -236,32 +329,6 @@ closer.onclick = function () {
     return false;
 };
 
-
-// Add the singleclick event code here
-map.on('singleclick', function (event) {
-    var feature = map.forEachFeatureAtPixel(
-        event.pixel, 
-        function (feature, layer) {
-            if(layer == staticGeoJSONLayer){
-                return feature;
-            }
-        }
-    );
-
-    if (feature != null) {
-        var pixel = event.pixel;
-        var coord = map.getCoordinateFromPixel(pixel);
-        popup.setPosition(coord);
-
-        content.innerHTML =
-            '<h5>Administrative Level 2</h5><br>' +
-            '<span>' +
-            feature.get('name_2') + ', ' +
-            feature.get('name_1')
-            '</span>';
-    }
-});
-
 // Add the pointermove event code here:
 map.on('pointermove', function(event) {
     var pixel = map.getEventPixel(event.originalEvent);
@@ -269,50 +336,70 @@ map.on('pointermove', function(event) {
     map.getTarget().style.cursor = hit ? 'pointer' : '';
 });
 
-// Add the legend code here:
-var legendHTMLString = '<ul>';
-function getLegendElement(title, color){
+//build the legend
+function getLegendElement(title, color) {
     return '<li>' + 
-        '<span class="legend-color" style="background-color: ' + color + ' ">' + 
-        '</span><span>' + 
-        title +
-        '</span></li>';
+        '<span class="legend-color" style="background-color: ' + color + ';"></span>' +
+        '<span>' + title + '</span></li>';
 }
 
-for(let overlayLayer of overlayLayers.getLayers().getArray()){
-    if(overlayLayer.getSource() instanceof ImageWMS){
-        var legendURLParams = {format: "application/json"};
-        var legendUrl = overlayLayer.getSource().getLegendUrl(0, legendURLParams);
-        // make the legend JSON request
-        await fetch(legendUrl).then(async (response) => {
-            await response.json().then((data) => {
-                var layerTitle = overlayLayer.get('title');
-                var layerSymbolizer = data["Legend"][0]["rules"][0]["symbolizers"][0];
-                var layerColor = null;
-                if("Polygon" in layerSymbolizer){
-                    layerColor = layerSymbolizer["Polygon"]["fill"];
-                } else if("Line" in layerSymbolizer){
-                    layerColor = layerSymbolizer["Line"]["stroke"];
-                }
+//This updates the legend, since we have just ImageWMS and geoJson as layers it takes care of just these two cases
+async function updateLegend() {
+    let localLegendHTML = '<ul>';
+    async function processLayer(layer) {
+        if (layer instanceof Group) { //if the current layes is a group we call the function recursively on its sublayers
+            const subLayers = layer.getLayers().getArray();
+            for (let subLayer of subLayers) {
+                await processLayer(subLayer);
+            }
+        } else if (!layer.getVisible()) {//If the layer is not visible we don't add it to the legend
+            return;
+        } else if (layer.getSource && layer.getSource() instanceof ImageWMS) {
+            const layerTitle = layer.get('title');
+            localLegendHTML += getLegendElement(layerTitle, null);
+            const legendUrl = layer.getSource().getLegendUrl(undefined, {
+                                                                        'FORMAT': 'image/png',
+                                                                        'TRANSPARENT': true
+                                                                        }); 
+            //We get the image legend and show it as a picture
+            if (legendUrl) {
+                const legendHtml = '<img src="' + legendUrl + '" alt="Legend">';
+                localLegendHTML += legendHtml;
+            }
 
-                if(layerColor != null){
-                    legendHTMLString += getLegendElement(layerTitle, layerColor);
-                }
-            });
-        });
+        } else {//This is teh case of GeoJSON
+            var layerStyle = layer.getStyle();
+            var layerColor = layerStyle.getStroke().getColor();
+            var layerTitle = layer.get('title');
+            localLegendHTML += getLegendElement(layerTitle, layerColor);
+        }
+    }
 
-    } else {
-        var layerStyle = overlayLayer.getStyle();
-        var layerColor = layerStyle.getFill().getColor();
-        var layerTitle = overlayLayer.get('title');
-        legendHTMLString += getLegendElement(layerTitle, layerColor);
+    await processLayer(overlayLayers);
+    localLegendHTML += '</ul>';
+    const legendContent = document.getElementById('legend-content');
+    if (legendContent) {
+        legendContent.innerHTML = localLegendHTML;
     }
 }
-// Finish building the legend HTML string
-var legendContent = document.getElementById('legend-content');
-legendHTMLString += "</ul>";
-legendContent.innerHTML = legendHTMLString;
+
+function addVisibilityListeners(groupLayer) {
+    const layers = groupLayer.getLayers().getArray();
+    for (let layer of layers) {
+        if (layer instanceof Group) {
+            addVisibilityListeners(layer); // ricorsione nei gruppi
+        }
+
+        layer.on('change:visible', () => {
+            updateLegend(); // aggiorna la legenda quando cambia visibilità
+        });
+    }
+}
 
 // Add the layer groups to the map here, at the end of the script!
 map.addLayer(basemapLayers);
 map.addLayer(overlayLayers);
+addVisibilityListeners(overlayLayers);
+updateLegend();
+
+
