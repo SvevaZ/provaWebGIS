@@ -14,219 +14,214 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/custom-styles.css" />
 	</head>
-	<body class="index is-preload">
-		<div id="page-wrapper">
 
-			<!-- Header -->
-				<header id="header" class="alt">
-					<h1 id="logo"><a href="index.html">My WebGIS</a></h1>
-					<nav id="nav"> 
-						<ul>
-							<li class="current"><a href="index.html">HOME</a></li>
-							<li class="current"><a href="pages/page2.html">Page 2</a></li>
-							<li class="current"><a href="pages/webgis.html">WebGIS</a></li>
-						</ul>
-					</nav>
-				</header>
+	<body class="is-preload">
 
-			<!-- Banner -->
-				<div id="banner" class="custom-banner">
-					<div class="banner-transparency"></div>
-
-					<!--
-						".inner" is set up as an inline-block so it automatically expands
-						in both directions to fit whatever's inside it. This means it won't
-						automatically wrap lines, so be sure to use line breaks where
-						appropriate (<br />).
-					-->
-					<div class="inner">
-
-						<header>
-							<h2>My WebGIS</h2>
-						</header>
-						<p>Based on <strong>Twenty</strong>, a free
-						<br />
-						responsive template
-						<br />
-						by <a href="https://html5up.net">HTML5 UP</a>.</p>
-						<footer>
-							<ul class="buttons stacked">
-								<li><a href="#main" class="button fit scrolly">Tell Me More</a></li>
-							</ul>
-						</footer>
-
+		<!-- Header -->
+		<header id="header" style="padding-top: 2rem;">
+			<nav>
+				<div class="nav-split">
+					<div class="nav-left">
+					<a href="index.html" class="button scrolly">Home</a>
 					</div>
-
+					<div class="nav-right">
+					<a href="../pages/air_quality.html" class="button scrolly">Air Quality</a>
+					<a href="../pages/land_cover.html" class="button scrolly">Land Cover</a>
+					<a href="../pages/pop_exposure.html" class="button scrolly">Population Exposure</a>
+					<a href="../pages/webgis.html" class="button scrolly">Webgis</a>
+					</div>
 				</div>
+			</nav>
+		</header>
 
-			<!-- Main -->
-				<article id="main">
-
-					<header class="special container">
-						<span class="icon solid fa-chart-bar"></span>
-						<h2>Usually here, you would put general information on your website or any interesting information.</h2>
-						<br />
-						<p>Templates are good because you do not have to focus on <strong>design</strong> but can focus on what is really important: communicating results.
-						<br />
-						This template is minimally designed, it is visually nice, and is easy to understand.
-						<br />
-						It is also released for free under the <a href="https://html5up.net/license">Creative Commons Attribution 3.0</a> license. Have fun!</p>
-					</header>
-
-					<!-- One -->
-						<div class="wrapper style2 container special-alt">
-							<div class="row gtr-50">
-								<div class="col-8 col-12-narrower">
-
-									<header>
-										<h2>Examples of icons that you can use using the library <strong>Font Awesome</strong>.</h2>
-									</header>
-									<p>This is not Latin or any weird language. It is sample text that developers use to fill the gaps of templates. It is called <strong>Lorem Ipsum</strong> <br><br>Lorem Ipsum dolor sit amet tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo.</p>
-									<footer>
-										<ul class="buttons">
-											<li><a href="https://fontawesome.com/v5/search?m=free" target="_blank" class="button">Find more icons</a></li>
-										</ul>
-									</footer>
-
-								</div>
-								<div class="col-4 col-12-narrower imp-narrower">
-
-									<ul class="featured-icons">
-										<li><span class="icon fa-clock"><span class="label">Feature 1</span></span></li>
-										<li><span class="icon solid fa-volume-up"><span class="label">Feature 2</span></span></li>
-										<li><span class="icon solid fa-laptop"><span class="label">Feature 3</span></span></li>
-										<li><span class="icon solid fa-inbox"><span class="label">Feature 4</span></span></li>
-										<li><span class="icon solid fa-lock"><span class="label">Feature 5</span></span></li>
-										<li><span class="icon solid fa-cog"><span class="label">Feature 6</span></span></li>
-									</ul>
-
-								</div>
-							</div>
-						</div>
-
-					<!-- Two -->
-						<div class="wrapper style1 container special">
-							<div class="row">
-								<div class="col-4 col-12-narrower">
-
-									<div>
-										<span class="icon solid featured fa-check"></span>
-										<header>
-											<h3>This is Something</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-									</div>
-
-								</div>
-								<div class="col-4 col-12-narrower">
-
-									<div>
-										<span class="icon solid featured fa-check"></span>
-										<header>
-											<h3>Also Something</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-									</div>
-
-								</div>
-								<div class="col-4 col-12-narrower">
-
-									<div>
-										<span class="icon solid featured fa-check"></span>
-										<header>
-											<h3>Probably Something</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-					<!-- Three -->
-						<div class="wrapper style3 container special">
-
-							<header class="major">
-								<h2>You can also remove stuff that you do not need!</h2>
+		<!-- Introduction -->
+			<section id="one" class="main style1">
+				<div class="container">
+					<header class="major special">
+								<h1>GIS project - air quality analysis over France</h>
 							</header>
-
-							<div class="row">
-								<div class="col-6 col-12-narrower">
-
-									<div>
-										<a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
-										<header>
-											<h3>A Really Fast Train</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-									</div>
-
-								</div>
-								<div class="col-6 col-12-narrower">
-
-									<div>
-										<a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-										<header>
-											<h3>An Airport Terminal</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-									</div>
-
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-6 col-12-narrower">
-
-									<div>
-										<a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
-										<header>
-											<h3>Hyperspace Travel</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-									</div>
-
-								</div>
-								<div class="col-6 col-12-narrower">
-
-									<div>
-										<a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
-										<header>
-											<h3>And Another Train</h3>
-										</header>
-										<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-									</div>
-
-								</div>
-							</div>
+					<div class="row gtr-150">
+						<div class="col-6 col-12-medium">
+							<p>Air quality has a huge impact on our health and on the environment. For this reson it's important to monitor air pollution, especially in populated areas, and to define guidelines to understand the level of risk in our region. </br>
+								This project focuses on France and on the concentration of three main pollutants: 
+								<ul>
+									<li>Nitrogen Dioxide -  NO<sub>2</sub></li>
+									<li>Particulate matter &lt; 2.5 &micro;m - PM2.5</li>
+									<li>Particulate matter &lt; 10 &micro;m - PM10</li>
+								</ul> 
+								In particular, we analyzed the historical trends from 2013 to 2022.
+							</p>
 						</div>
-
-				</article>
-
-			<!-- CTA -->
-				<div id="cta">
-					<header>
-						<h2>Ready to do <strong>something</strong>?</h2>
-						<p>This is an example website for the GIS Class of Politecnico di Milano - 2023/2024.</p>
-					</header>
-					<footer>
-						<ul class="buttons">
-							<li><a href="pages/webgis.html" class="button primary">Go To the WebGIS</a></li>
-							<li><a href="pages/page2.html" class="button">Go to page 2</a></li>
-						</ul>
-					</footer>
-
+						<div class="col-1 col-12-medium imp-medium">
+						</br>
+						</div>
+						<div class="col-5 col-12-medium imp-medium">
+							<span class="image fit"><img src="images/Homepage/blurred.png" alt="" /></span>
+						</div>
+					</div>
 				</div>
+			</section>
 
-			<!-- Footer -->
-				<footer id="footer">
+		<!-- Aim and structure of the project -->
+			<section id="three" class="main style1 special" style="padding-top: 0;">
+				<div class="container" >
+					<header class="major" >
+						<h2>Aim of the project</h2>
+					</header>
+					<p>The project focuses on three main analysis, combining the study of historical trends with health guidelines, land cover and population exposure.</p>
+					<div class="row gtr-150">
+						<div class="col-4 col-12-medium">
+							<h3>Air Quality</h3>
+						</div>
+						<div class="col-4 col-12-medium">
+							<h3>Land Cover</h3>
+						</div>
+						<div class="col-4 col-12-medium">
+							<h3>Population Exposure</h3>
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="images/air_quality/04.png" alt="" /></span>
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="images/Land Cover/Reclassified_6_classes.png" alt="" /></span>
+						</div>
+						<div class="col-4 col-12-medium">
+							<span class="image fit"><img src="images/Pop_exposure/no2_bivariate.png" alt="" /></span>
+						</div>
+						<div class="col-4 col-12-medium">
+							<p>In this section we combined hourly pollutant maps into annual average maps, reclassified according to health guidelines and computed the difference over the span of 5 years.  </p>
+							<ul class="actions special">
+								<li><a href="pages/air_quality.html" class="button">More</a></li>
+							</ul>
+						</div>
+						<div class="col-4 col-12-medium">
+							<p>In this section we combine air quality data with land cover maps to investigate if different land cover classes have significative different pollution levels. </p>
+							<ul class="actions special">
+								<li><a href="pages/land_cover.html" class="button">More</a></li>
+							</ul>
+						</div>
+						<div class="col-4 col-12-medium">
+							<p>In this section we combined air quality data with the population map of France to see in which areas the population is more exposed to pollutants </p>
+							<ul class="actions special">
+								<li><a href="pages/pop_exposure.html" class="button">More</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 
-					<ul class="copyright">
-						<li>&copy; My WebGIS</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
+			<!-- Webgis -->
+			<div class="container">
+			<section id="footer" class="main style2 special">
+				<div class="container">
+					<header class="major">
+						<h2>Webgis</h2>
+					</header>
+					<p style="color:#ffffff">The most significative maps produced during the project have been uploaded into the Online Geoserver of Politecnico di Milano and can be visualized through the webgis page. Here it's possible to select WMS layers and visualize them on the map, along with their legend.
+					<ul class="actions special">
+						<li><a href="#pages/webgis.html" class="button wide primary">More</a></li>
 					</ul>
+				</div>
+			</section>
+			</div>
 
-				</footer>
+		<!-- Resources -->
+			<section id="one" class="main style1"></section>
+			<div class="container">
+				<section>
+					<header class="major special">
+						<h2>Resources</h2>
+					</header>
+					<p>Here is the list of all the websites we used in the project, they all provide free and open-access data.</p>
+					<hr />
+					<div class="row gtr-150">
+						<div class="col-3 col-12-medium">
+							<span class="image fit"><img src="images/Homepage/CAMS.png" alt="" /></span>
+						</div>
+						<div class="col-9 col-12-medium">
+							<h3>Copernicus Atmosphere Monitoring Service (CAMS)</h3>
+								<p>From <a href="https://ads.atmosphere.copernicus.eu/datasets/cams-europe-air-quality-reanalyses?tab=overview">European Air Quality Reanalysis dataset</a> we downloaded 1-hourly concentration maps for our three pollutants, from January 2013 to December 2022.
+								</br></p>
+						</div>
+					</div>
+					<hr />
+					
+					<div class="row gtr-150">
+						<div class="col-9 col-12-medium">
+							<h3>ESA CCI Land Cover</h3>
+							<p>From <a href="https://cds.climate.copernicus.eu/datasets/satellite-land-cover?tab=overview">Land cover classification gridded maps from 1992 to present derived from satellite observations dataset</a> we downloaded land cover data, to simplify we choose to work just with data from 2022</p>
+						</div>
+						<div class="col-3 col-12-medium">
+							<span class="image fit"><img src="images/Homepage/LandCover.png" alt="" /></span>
+						</div>
+					</div>
+					<hr />
+					
+					<div class="row gtr-150">
+						<div class="col-3 col-12-medium">
+							<span class="image fit"><img src="images/Homepage/WorldPop.png" alt="" /></span>
+						</div>
+						<div class="col-9 col-12-medium">
+							<h3>WorldPop - Population Counts</h3>
+							<p>From <a href="https://hub.worldpop.org/geodata/listing?id=29">World Pop Population Counts</a> we downloaded population data for France, to simplify we choose to work just with data from 2020</p>
+						</div>
+					</div>
+					<hr />
+					
+					<div class="row gtr-150">
+						<div class="col-9 col-12-medium">
+							<h3>Global Administrative Unit Layers (GAUL)</h3>
+							<p>From <a href="https://data.apps.fao.org/catalog/dataset/b0634117-37c0-4125-ad87-89cb9aec4eea">FAO GAUL level 2</a> we downloaded administrative level 2 boundaries (Provinces) for France.</p>
+						</div>
+						<div class="col-3 col-12-medium">
+							<span class="image fit"><img src="images/Homepage/FAO.png" alt="" /></span>
+						</div>
+					</div>
+					<hr />
+				</section>
+			</div>
+			</section>
+			<!-- US -->
+			<section id="three" class="main style1 special">
+				<div class="container">
+					<header class="major">
+						<h2>Us</h2>
+					</header>
+					<div class="row gtr-150">
+						<div class="col-4 col-12-medium">
+							<h3>Sveva Zanetti</h3>
+							<p>She carried out the analysis regarding NO<sub>2</sub> and she focused on the homepage and the land cover page of this website</p>
+							<ul class="icons">
+								<li><a href="https://github.com/SvevaZ" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</div>
+						<div class="col-4 col-12-medium">
+							<h3>Silvia Macchi</h3>
+							<p>She carried out the analysis regarding PM2.5 and she focused on the population exposure page of this website</p>
+							<ul class="icons">
+								<li><a href="https://github.com/silviamacchi" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</div>
+						<div class="col-4 col-12-medium">
+							<h3>Giovanni Pasut</h3>
+							<p>He carried out the analysis regarding PM10 and he focused on the air quality page of this website</p>
+							<ul class="icons">
+								<li><a href="https://github.com/giovannipasut" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 
-		</div>
+		<!-- Footer -->
+			<section id="footer">
+				<ul class="icons" >
+					<li><a href="https://github.com/silviamacchi/webGIS_project" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>GIS project 2024/2025</li><li>Developed by: Sveva Zanetti, Silvia Macchi, Giovanni Pasut</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+				</ul>
+			</section>
 
 		<!-- Scripts -->
 		<script src="/js/jquery.min.js"></script>
